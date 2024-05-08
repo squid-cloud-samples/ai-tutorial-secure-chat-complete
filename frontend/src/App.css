@@ -1,0 +1,47 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+div {
+  padding: 10px;
+}
+
+.scrolling {
+  overflow-y: auto;
+  max-height: 250px;
+  display: flex;
+  justify-content: center;
+}
+
+.messages {
+  text-align: left;
+  width: 75%;
+}
+
+div.question {
+  margin: 0 auto;
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  color: #1b1f27;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+

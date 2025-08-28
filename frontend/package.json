@@ -11,12 +11,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@auth0/auth0-react": "^2.2.1",
+    "@auth0/auth0-react": "^2.4.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.14",
-    "@squidcloud/react": "^1.0.51",
-    "@squidcloud/samples": "^1.0.11",
+    "@squidcloud/react": "^1.0.115",
+    "@squidcloud/samples": "^1.0.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

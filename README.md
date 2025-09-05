@@ -149,6 +149,32 @@ Here are some questions to try:
 
 Share your favorite squid questions and answers with the Squid Squad on [Discord](https://discord.gg/Cs8bwVBkKe) or [X](https://twitter.com/_squidcloud).
 
+## Advanced `@secureAiAgent` usage
+
+The `@secureAiAgent`-decorated function can do more than just check if the user has logged into Auth0. The function can take in a [SecureAiAgentContext](https://docs.getsquid.ai/generated-docs/backend/classes/secureaiagentcontext) object and enforce other rules, like so:
+```typescript
+@secureAiAgent('squid-facts')
+allowChat(context: SecureAiAgentContext): boolean {
+  // Enforce the user is logged in.
+  if (!this.isAuthenticated()) {
+    return false;
+  }
+  
+  // Don't allow the user to override the LLM model configured for the agent.
+  if (context.options?.model !== undefined) {
+    return false;
+  }
+  
+  // Block nefarious prompts in either the prompt itself or the added instructions.
+  if (`${context.prompt || ''} ${context.options?.instructions || ''}`.toLowerCase().includes('ignore all previous instructions')) {
+    return false;
+  }
+  return true;
+}
+```
+
+For a list of all `options` fields that can be analyzed in this function, see [BaseAiChatOptions](https://docs.getsquid.ai/generated-docs/typescript-client/interfaces/baseaichatoptions).
+
 ## Conclusion
 
 Congratulations! You just added a chatbot to an app, and then secured it using the Squid Backend SDK. Feel free to keep asking questions to see just how much this AI chatbot knows about squids!

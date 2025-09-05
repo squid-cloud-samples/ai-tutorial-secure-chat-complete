@@ -7,12 +7,11 @@ import { secureAiAgent, SecureAiAgentContext, SquidService } from '@squidcloud/b
 export class AiSecurityService extends SquidService {
   @secureAiAgent('squid-facts')
   allowChat(context: SecureAiAgentContext): boolean {
-    if (context.options?.model !== undefined) {
-      // Can enforce that the client is not requesting a different LLM model
-      // than the one the agent was configured to use.
+    // Enforce the user is logged in.
+    if (!this.isAuthenticated()) {
       return false;
     }
-    // Enforce the user is logged in.
-    return this.isAuthenticated();
+    // Don't allow the user to override the LLM model configured for the agent.
+    return context.options?.model === undefined;
   }
 }
